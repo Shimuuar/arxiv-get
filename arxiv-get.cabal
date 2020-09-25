@@ -1,0 +1,19 @@
+Name:                arxiv-get
+Version:             0.1
+License:             BSD3
+License-file:        LICENSE
+Author:              Aleksey Khudyakov <alexey.skladnoy@gmail.com>
+Maintainer:          Khudyakov Alexey <alexey.skladnoy@gmail.com>
+Category:            Web
+Build-type:          Simple
+Cabal-version:       >=1.6
+Synopsis:            Small utility to download papers from arXiv.org and give them meaningful names
+
+
+Executable arxiv-get
+  Build-depends:       base >= 3,
+                       process,
+                       tagsoup
+  Main-is:             arXiv.hs
+  Other-modules:       
+  
