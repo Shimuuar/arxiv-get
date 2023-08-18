@@ -125,9 +125,9 @@ download d fmt s = do
 dispach :: Format -> String -> IO ()
 dispach _ str
   | ("arxiv:",s) <- at 6 = download arXiv PDF s
-  | otherwise            = throwIO $ UrlException $ "Cannot understand: " ++ str
-    where
-      at n = first (map toLower) $ splitAt n str
+  | otherwise            = download arXiv PDF str
+  where
+    at n = first (map toLower) $ splitAt n str
       
 
 ----------------------------------------------------------------
