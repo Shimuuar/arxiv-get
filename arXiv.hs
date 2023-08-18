@@ -1,4 +1,6 @@
 {-# LANGUAGE DeriveDataTypeable #-}
+{-# LANGUAGE LambdaCase         #-}
+{-# LANGUAGE PatternGuards      #-}
 import Control.Arrow
 import Control.Applicative
 import Control.Monad
@@ -91,13 +93,17 @@ arxivSelectTitle (_:xs) = arxivSelectTitle xs
 arxivSelectTitle _      = Nothing
 
 formatTitle :: String -> String
-formatTitle = ("arXiv"++) . concatMap f
+formatTitle = ("arXiv"++) . reformat
   where
-    f '/' = ":"
-    f '$' = ""
-    f '{' = ""
-    f  c | isSpace c = "_" 
-         | otherwise = [c]
+    reformat = \case
+      ""     -> ""
+      '/':cs -> reformat cs
+      '$':cs -> reformat cs
+      '{':cs -> reformat cs
+      '}':cs -> reformat cs
+      c:cs
+        | isSpace c -> '_':reformat cs
+        | otherwise -> c  :reformat cs
 
 
 ----------------------------------------------------------------
