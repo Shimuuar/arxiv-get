@@ -79,13 +79,13 @@ arxivExtension PS     = ".ps"
 arxivExtension Source = ".tar.gz"
 
 arxivAbstractURL :: String -> Maybe String
-arxivAbstractURL s = Just $ "http://arxiv.org/abs/" ++ s
+arxivAbstractURL s = Just $ "https://arxiv.org/abs/" ++ s
 
 arxivPaperURL :: Format -> String -> Maybe URL
 arxivPaperURL Any    s = arxivPaperURL PDF s
-arxivPaperURL PDF    s = Just $ "http://arxiv.org/pdf/"    ++ s
-arxivPaperURL PS     s = Just $ "http://arxiv.org/ps/"     ++ s
-arxivPaperURL Source s = Just $ "http://arxiv.org/format/" ++ s
+arxivPaperURL PDF    s = Just $ "https://arxiv.org/pdf/"    ++ s
+arxivPaperURL PS     s = Just $ "https://arxiv.org/ps/"     ++ s
+arxivPaperURL Source s = Just $ "https://arxiv.org/format/" ++ s
 
 arxivSelectTitle :: [Tag String] -> Maybe String
 arxivSelectTitle (TagOpen "title" _ : TagText title : TagClose "title" : _) = Just title
